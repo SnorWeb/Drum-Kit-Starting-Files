@@ -7,13 +7,15 @@ for (let i = 0; i < numberOfDrumButtons; i++) {
 
         var htmlButton = this.innerHTML;
         MakeSound(htmlButton);
-        
+        buttonAnimation(htmlButton);
+
     });
 
 }
 
 document.addEventListener("keydown",function(event){
     MakeSound(event.key);
+    buttonAnimation(event.key);
 });
 
 function MakeSound(trigger){
@@ -54,4 +56,12 @@ function MakeSound(trigger){
         default: console.log("wrong button");
     }
 };
+
+function buttonAnimation(currentkey){
+    var currentButton = document.querySelector("." + currentkey);
+    currentButton.classList.add("pressed");
+    setTimeout(function(){
+        currentButton.classList.remove("pressed")
+    }, 100);
+}
 
